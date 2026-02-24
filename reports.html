@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Management Reports</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header><h1>Hospital Management Reports</h1></header>
+
+<nav>
+    <a href="index.html">Dashboard</a>
+    <a href="patients.html">Patients</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="treatments.html">Treatments</a>
+    <a href="beds.html">Beds</a>
+    <a href="reports.html">Reports</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Doctors Status</h2>
+        <canvas id="doctorChart"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Bed Availability</h2>
+        <canvas id="bedChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+
+// Retrieve Data
+let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+let beds = JSON.parse(localStorage.getItem("beds")) || [];
+
+// Doctor Status Calculation
+let presentDoctors = doctors.filter(d => d.status === "Present").length;
+let freeDoctors = doctors.filter(d => d.status === "Free").length;
+
+// Doctor Pie Chart
+new Chart(document.getElementById("doctorChart"), {
+    type: "pie",
+    data: {
+        labels: ["Present (On Duty)", "Free (Available)"],
+        datasets: [{
+            data: [presentDoctors, freeDoctors]
+        }]
+    }
+});
+
+// Bed Status Calculation
+let availableBeds = beds.filter(b => b.status === "Available").length;
+let occupiedBeds = beds.filter(b => b.status === "Occupied").length;
+
+// Bed Pie Chart
+new Chart(document.getElementById("bedChart"), {
+    type: "pie",
+    data: {
+        labels: ["Available Beds", "Occupied Beds"],
+        datasets: [{
+            data: [availableBeds, occupiedBeds]
+        }]
+    }
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Treatments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Treatment Management</h1>
+</header>
+
+<nav>
+    <a href="index.html">Dashboard</a>
+    <a href="patients.html">Patients</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="treatments.html">Treatments</a>
+    <a href="beds.html">Beds</a>
+    <a href="reports.html">Reports</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Record Treatment</h2>
+
+        <input type="text" id="tPatient" placeholder="Patient Name">
+
+        <input type="text" id="tDoctor" placeholder="Doctor Name">
+
+        <select id="tType">
+            <option>Consultation</option>
+            <option>Surgery</option>
+            <option>Therapy</option>
+        </select>
+
+        <input type="number" id="tDays" placeholder="Number of Days">
+
+        <button onclick="addTreatment()">Add Treatment</button>
+    </div>
+
+</div>
+
+</body>
+</html>
